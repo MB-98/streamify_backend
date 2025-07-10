@@ -18,7 +18,7 @@ export class AppController {
   @Post('/session')
   setStreamingSession(@Res({ passthrough: true }) res: Response) {
     const cookies = this.cloudFrontService.generateSignedCookiesForAllVideos();
-    const domain = process.env.AWS_CLOUDFRONT_DOMAIN;
+    const domain = process.env.CLOUDFRONT_DOMAIN;
     const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 Stunden ab jetzt
 
     res.cookie('CloudFront-Policy', cookies['CloudFront-Policy'], {
