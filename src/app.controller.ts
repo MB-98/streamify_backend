@@ -1,19 +1,12 @@
 import { Controller, Get, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { AppService } from './app.service';
 import { CloudFrontServiceService } from './service/cloud-front-service/cloud-front-service.service';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     private readonly cloudFrontService: CloudFrontServiceService,
   ) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
 
   @Post('/session')
   setStreamingSession(@Res({ passthrough: true }) res: Response) {
